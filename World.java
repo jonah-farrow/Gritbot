@@ -71,10 +71,11 @@ public class World {
         int currentTile = 0;
         for (int o = 0; 0 < 10; o++) {
             for (int i = 0; i < 10; i++) {
-                if (currentTile == colonistLocation)
+                if (currentTile == colonistLocation) {
                     worldMapOutput += " | " + "O";
-                else
+                } else {
                     worldMapOutput += " | " + currentTile;
+                }
             }
         }
         return worldMapOutput;

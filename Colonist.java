@@ -1,8 +1,32 @@
+import java.util.ArrayList;
+
 public class Colonist {
     // When the game starts the three Colinist traits are set to 70%
     public int howHungry, howTired, howHappy = 70;
     // Set by the player at the start of the game
     public String colonistName;
+
+    /**
+     * 
+     * @return ArrayList called colonist containing all properties that are colonist
+     *         can have such as:
+     *         current tile, how hungry, how tired, how happy, possible directions
+     *         (north, east, south west)
+     */
+    public ArrayList<Integer> getColonistStats() {
+        ArrayList<Integer> colonist = new ArrayList<Integer>();
+
+        colonist.set(0, getTile());
+        colonist.set(1, getHowHungry());
+        colonist.set(2, getHowTired());
+        colonist.set(3, getHowHappy());
+        for (int i = 4; i < 8; i++) {
+            colonist.set(i, World.getPossibleDirections().get(i - 4));
+        }
+
+        return colonist;
+
+    }
 
     /**
      * Over time these traits naturally decrease,
@@ -92,5 +116,13 @@ public class Colonist {
 
     public Boolean getDepressed() {
         return true;
+    }
+
+    public int getTile() {
+        return World.getColonistLocation();
+    }
+
+    public int getDirections() {
+        return World.getPossibleDirections();
     }
 }
