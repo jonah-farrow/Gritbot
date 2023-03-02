@@ -10,6 +10,12 @@ public class Task {
      * Research
      */
 
+    /*
+     * Priority of task to complete needs to be designed.
+     * One way might be through designing a simple schedule with orders:
+     * work/sleep/anything/recreation that increase the weighting of certain ta
+     */
+
     public static void generateTaskList() { // Runs once at the start of the game to generate task list
         List<Integer> tasks = new ArrayList<Integer>();
         for (int i = 0; i < 20; i++) {
