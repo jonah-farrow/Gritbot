@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Colonist {
     // When the game starts the three Colinist traits are set to 70%
@@ -8,21 +9,22 @@ public class Colonist {
 
     /**
      * 
-     * @return ArrayList called colonist containing all properties that are colonist
+     * @return HashMap called colonist containing all properties that are colonist
      *         can have such as:
-     *         current tile, how hungry, how tired, how happy, possible directions
+     *         current tile [0], how hungry [1], how tired [2], how happy [3],
+     *         possible directions[4][5][6][7]
      *         (north, east, south west)
      */
-    public ArrayList<Integer> getColonistStats() {
-        ArrayList<Integer> colonist = new ArrayList<Integer>();
+    public HashMap<String, Integer> getColonistStats() {
+        HashMap<String, Integer> colonist = new HashMap<String, Integer>();
 
-        colonist.set(0, getTile());
-        colonist.set(1, getHowHungry());
-        colonist.set(2, getHowTired());
-        colonist.set(3, getHowHappy());
-        for (int i = 4; i < 8; i++) {
-            colonist.set(i, World.getPossibleDirections().get(i - 4));
-        }
+        colonist.put("Colonist Location:", getTile());
+        colonist.put("Colonist Hunger", getHowHungry());
+        colonist.put("Colonist Tiredness", getHowTired());
+        colonist.put("Colonist Happiness", getHowHappy());
+        colonist.put("North Tile", World.getPossibleDirections().get(0));
+        colonist.put("East Tile", World.getPossibleDirections().get(2));
+        colonist.put("West Tile", World.getPossibleDirections().get(3));
 
         return colonist;
 
@@ -118,11 +120,11 @@ public class Colonist {
         return true;
     }
 
-    public int getTile() {
+    public int getTile() { // is bad practice?
         return World.getColonistLocation();
     }
 
-    public int getDirections() {
-        return World.getPossibleDirections();
+    public ArrayList<Integer> getDirections() {
+        return World.getPossibleDirections(); // TODO: create a flow on how all this going to work
     }
 }

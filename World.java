@@ -27,59 +27,25 @@ public class World {
      */
     static HashMap<Integer, Integer> worldMap = new HashMap<Integer, Integer>();
     static ArrayList<Integer> possibleDirections = new ArrayList<Integer>();
-    static int colonistLocation = 0;
-    static String worldMapOutput = "";
+    static int colonistLocation = 50;
     static Boolean worldSetup = false;
 
-    // The AI starts in area [55][x] which is the middle of the map
+    // runs once at the beginning of the game
     public static void generateStartingWorldMap() {
         for (int f = 0; f < 100; f++) {
-            if (f == 55 && !worldSetup)
-                worldMap.put(f, 1000000000);
-            worldMap.put(f, 0000000000);
+            if (f == 50) {
+                worldMap.put(f, 1); // value = 1, represent colonist occupy space
+            } else {
+                worldMap.put(f, 0);
+            }
             System.out.print(f + " ");
         }
         System.out.println("\n");
-    }
 
-    public static String generateStartingWorldView() {
-        for (int o = 0; o < 10; o++) {
-            for (int i = 0; i < 10; i++) {
-                if (colonistLocation == 55) {
-                    worldMapOutput += " | PC";
-                    possibleDirections.add(45);
-                    possibleDirections.add(56);
-                    possibleDirections.add(65);
-                    possibleDirections.add(54);
-                } else {
-                    worldMapOutput += " | " + colonistLocation;
-                }
-                colonistLocation++;
-            }
-            worldMapOutput += " |\n";
-        }
-        colonistLocation = 55;
-        return worldMapOutput;
-    }
-
-    /**
-     * Update world view by changing colonist location on output map string
-     * 
-     * @return
-     */
-    public static String updateWorldView() {
-        int currentTile = 0;
-        for (int o = 0; 0 < 10; o++) {
-            for (int i = 0; i < 10; i++) {
-                if (currentTile == colonistLocation) {
-                    worldMapOutput += " | " + "O";
-                } else {
-                    worldMapOutput += " | " + currentTile;
-                }
-            }
-        }
-        return worldMapOutput;
-
+        possibleDirections.add(0);
+        possibleDirections.add(0);
+        possibleDirections.add(0);
+        possibleDirections.add(0);
     }
 
     /**
@@ -92,7 +58,10 @@ public class World {
      * @return An ArrayList of Integers representing the current directions the
      *         colonist could take
      */
-    public static ArrayList<Integer> updatePossibleDirections() {
+    public static ArrayList<Integer> updatePossibleDirections() { // investigate if 100, 101, 102, 103 are appropriate
+                                                                  // boundry numbers, should they be just if >= 100?
+        System.out.println("updatePossibleDirections: " + colonistLocation);
+
         if (colonistLocation - 10 < 0) {
             possibleDirections.set(0, 100); // 100 = Reached most northern tiles of world
         } else {
@@ -122,16 +91,14 @@ public class World {
      * @param destination is destination tile
      * @return updated world-view
      */
-    public static String updateColonistLocation(int destination) {
-        colonistLocation = destination; // New colonistLocation is equal to destination (has now moved)
-        updatePossibleDirections(); // Update possible destinations given colonist is on new tile
-        return updateWorldView(); // Returns an updated world-view
+    public static ArrayList<Integer> updateColonistLocation(int destination) {
+        colonistLocation = destination; // New colonistLocation is destination (has now moved)
+        return updatePossibleDirections(); // Update possible destinations given colonist is on new tile
     }
 
     /**
      * Getter-methods
      */
-
     public static int getColonistLocation() {
         return colonistLocation;
     }
