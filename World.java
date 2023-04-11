@@ -26,22 +26,24 @@ public class World {
      * 0 for false, 1 for true
      */
     static HashMap<Integer, Integer> worldMap = new HashMap<Integer, Integer>();
-    static ArrayList<Integer> possibleDirections = new ArrayList<Integer>();
+    static ArrayList<Integer> possibleDirections = new ArrayList<Integer>(); // North, East, South, West
     static int colonistLocation = 50;
-    static Boolean worldSetup = false;
+    static Boolean worldSetup = false; // is needed?
 
     // runs once at the beginning of the game
     public static void generateStartingWorldMap() {
         for (int f = 0; f < 100; f++) {
-            if (f == 50) {
-                worldMap.put(f, 1); // value = 1, represent colonist occupy space
-            } else {
-                worldMap.put(f, 0);
-            }
-            System.out.print(f + " ");
+            worldMap.put(f, 0);
+
+            System.out.print(f + " "); // DEBUG: is iterating 100 times
         }
+        worldMap.put(colonistLocation, 1); // value = 1, represent colonist starting space
+
         System.out.println("\n");
 
+        /*
+         * Initialises possible directions array at start of game
+         */
         possibleDirections.add(0);
         possibleDirections.add(0);
         possibleDirections.add(0);
@@ -60,7 +62,6 @@ public class World {
      */
     public static ArrayList<Integer> updatePossibleDirections() { // investigate if 100, 101, 102, 103 are appropriate
                                                                   // boundry numbers, should they be just if >= 100?
-        System.out.println("updatePossibleDirections: " + colonistLocation);
 
         if (colonistLocation - 10 < 0) {
             possibleDirections.set(0, 100); // 100 = Reached most northern tiles of world
