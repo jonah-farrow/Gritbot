@@ -23,7 +23,8 @@ public class Colonist {
         colonist.put("Colonist Tiredness", getHowTired());
         colonist.put("Colonist Happiness", getHowHappy());
         colonist.put("North Tile", World.getPossibleDirections().get(0));
-        colonist.put("East Tile", World.getPossibleDirections().get(2));
+        colonist.put("East Tile", World.getPossibleDirections().get(1));
+        colonist.put("South Tile", World.getPossibleDirections().get(2));
         colonist.put("West Tile", World.getPossibleDirections().get(3));
 
         return colonist;
@@ -108,15 +109,15 @@ public class Colonist {
         return howHappy;
     }
 
-    public Boolean getExhauted() {
+    public Boolean isExhauted() {
         return true;
     }
 
-    public Boolean getStarving() {
+    public Boolean isStarving() {
         return true;
     }
 
-    public Boolean getDepressed() {
+    public Boolean isDepressed() {
         return true;
     }
 
