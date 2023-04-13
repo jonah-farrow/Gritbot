@@ -45,6 +45,7 @@ public class Event {
 
     public void addCustomEvent(String eventName, boolean isBuff, String toTrait) {
         events.put(4, eventName);
+
     }
 
     public void eventTropicalStorm() {
