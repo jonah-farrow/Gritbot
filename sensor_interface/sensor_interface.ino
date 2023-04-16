@@ -49,9 +49,10 @@ void loop() {
   Serial.print("Light: ");
   Serial.print(lux);
   DHT.read(DHT11_PIN);
-  Serial.print("  temp:");
+  Serial.print("  Temp:");
   Serial.print(DHT.temperature);
-  Serial.print("  humi:");
-  Serial.println(DHT.humidity);
+  Serial.print("  Humi:");
+  Serial.print(DHT.humidity);
+  Serial.println("  ");
   delay(1000);
 }
