@@ -29,6 +29,9 @@ public class World {
     static ArrayList<Integer> possibleDirections = new ArrayList<Integer>(); // North, East, South, West
     static int colonistLocation = 50;
     static Boolean worldSetup = false; // is needed?
+    static float light;
+    static float temp;
+    static float humidity;
 
     // runs once at the beginning of the game
     public static void generateStartingWorldMap() {
@@ -84,6 +87,19 @@ public class World {
             possibleDirections.set(3, (colonistLocation - 1)); // New West tile
         }
         return possibleDirections;
+    }
+
+    /**
+     * Method to set the environmental data ingame
+     * 
+     * @param lightLevel, tempLevel, humidityLevel
+     * @return nothing
+     */
+    public static void setEnvironmentLevels(float lightLevel, int tempLevel, int humidityLevel) {
+        light = lightLevel;
+        temp = tempLevel;
+        humidity = humidityLevel;
+        System.out.println(light + " " + temp + " " + humidity);
     }
 
     /**
