@@ -28,10 +28,7 @@ public class World {
     static HashMap<Integer, Integer> worldMap = new HashMap<Integer, Integer>();
     static ArrayList<Integer> possibleDirections = new ArrayList<Integer>(); // North, East, South, West
     static int colonistLocation = 50;
-    static Boolean worldSetup = false; // is needed?
-    static float light;
-    static float temp;
-    static float humidity;
+    static Boolean worldSetup; // is needed?
 
     // runs once at the beginning of the game
     public static void generateStartingWorldMap() {
@@ -90,19 +87,6 @@ public class World {
     }
 
     /**
-     * Method to set the environmental data ingame
-     * 
-     * @param lightLevel, tempLevel, humidityLevel
-     * @return nothing
-     */
-    public static void setEnvironmentLevels(float lightLevel, int tempLevel, int humidityLevel) {
-        light = lightLevel;
-        temp = tempLevel;
-        humidity = humidityLevel;
-        System.out.println(light + " " + temp + " " + humidity);
-    }
-
-    /**
      * Updates colonist location to be the new destination tile
      * 
      * @param destination is destination tile
@@ -116,6 +100,7 @@ public class World {
     /**
      * Getter-methods
      */
+
     public static int getColonistLocation() {
         return colonistLocation;
     }

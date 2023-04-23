@@ -30,7 +30,7 @@ public class SensorInterface {
                     System.out.println("Readings: " + arr[0] + " " + arr[1] + " " + arr[2]);
                     // input = arr[1]; // arr[1] == "", stops reading input from here
 
-                    World.setEnvironmentLevels(Float.parseFloat(arr[0]), Integer.parseInt(arr[1]),
+                    Environment.setEnvironmentLevels(Float.parseFloat(arr[0]), Integer.parseInt(arr[1]),
                             Integer.parseInt(arr[2]));
 
                 }
