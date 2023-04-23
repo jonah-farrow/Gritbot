@@ -28,9 +28,9 @@ public class Game {
             // me.moveTile(0);
 
             // world event trigger (temporary or permanent event in current tile)
+            System.out.println("Current Event: " + Event.getEvent());
 
             // memorise event
-
             // carrys out task (success or fail in that tile)
 
             // process (delay for game output)
