@@ -33,17 +33,17 @@ will be 0x23 (by default).
 //DFRobot_DHT11 DHT;
 BH1750 lightMeter;
 
-#define BME_SCK 14
-#define BME_MISO 41
-#define BME_MOSI 13
-#define BME_CS 8
+#define BME_SCK 5
+#define BME_MISO 18
+#define BME_MOSI 19
+#define BME_CS 4
 
 #define SEALEVELPRESSURE_HPA (1013.25)
 
-Adafruit_BME280 bme; // I2C
+Adafruit_BME280 bme(BME_CS, BME_MOSI, BME_MISO, BME_SCK); // software SPI
 
 unsigned long delayTime;
-int count = 0;
+
 void setup() {
   Serial.begin(9600);
   unsigned status;
@@ -72,8 +72,6 @@ void setup() {
 }
 
 void loop() {
-  while(count < 1){
-
     float lux = lightMeter.readLightLevel();
     Serial.println("");
     Serial.print("Light: ");
@@ -86,11 +84,7 @@ void loop() {
     Serial.print("Humidity = ");
     Serial.print(bme.readHumidity());
     Serial.println(" %");
-
-    count++;
-
-  }
   
-
-  
+    Serial.println();
+    delay(1000);
 }
