@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.time.*;
 
 public class Game {
@@ -5,6 +6,16 @@ public class Game {
     public static void runGame() {
         boolean gameOver = false;
         long start = System.currentTimeMillis();
+        String[] arr = { "North", "East", "South", "West" };
+
+        // Start reading
+        try {
+            SensorInterface.test();
+            System.out.println("Sensors Activated: True");
+        } catch (IOException e) {
+            System.out.println("Sensors Activated: False");
+            e.printStackTrace();
+        }
 
         System.out.println("Creating World Map...\n");
         World.generateStartingWorldMap();
@@ -20,7 +31,8 @@ public class Game {
 
         while (!gameOver) { // Begin game
             // take sensor input
-            System.out.println("Light level: \n" + "Temperature: \n" + "Humidity: \n");
+            Environment.setEnvironmentLevels(SensorInterface.getLux(), SensorInterface.getTemp(),
+                    SensorInterface.getHumidity());
 
             // output possible colonist directions
             System.out.println("Possible directions: " + World.getPossibleDirections());

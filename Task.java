@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -16,15 +18,53 @@ public class Task {
      * work/sleep/anything/recreation that increase the weighting of certain ta
      */
 
-    public static void generateTaskList() { // Runs once at the start of the game to generate task list
-        List<Integer> tasks = new ArrayList<Integer>();
-        for (int i = 0; i < 20; i++) {
-            tasks.add(i);
-        }
+    public static ArrayList<String> generateTaskList() { // Runs once at the start of the game to generate task list
+        ArrayList<String> tasks = new ArrayList<String>();
+        tasks.add("Firefight");
+        tasks.add("Patient");
+        tasks.add("Doctor");
+        tasks.add("Bed rest");
+        tasks.add("Basic");
+        tasks.add("Warden");
+        tasks.add("Handle");
+        tasks.add("Cook");
+        tasks.add("Hunt");
+        tasks.add("Construct");
+        tasks.add("Grow");
+        tasks.add("Mine");
+        tasks.add("Planting");
+        tasks.add("Smithing");
+        tasks.add("Tailor");
+        tasks.add("Art");
+        tasks.add("Craft");
+        tasks.add("Haul");
+        tasks.add("Clean");
+        tasks.add("Research");
+        return tasks;
     }
 
-    public static int generateTask() {
-        double generateRandomTask = Math.random() * 19;
-        return (int) generateRandomTask;
+    /**
+     * The lower the trait the higher the weighting it has to occur
+     */
+    public void decideWhatTaskToComplete() {
+        HashMap<Integer, Integer> traitToPrioritise = new HashMap<Integer, Integer>(); // trait then value
+        int[] arr = Colonist.getColonistTraits();
+        int min = arr[0];
+        int index = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (min > arr[i]) {
+                min = arr[i];
+                index = i;
+            }
+        }
+
+        System.out.println(arr);
+        // int min = Arrays.stream(arr)
+        // .min()
+        // .getAsInt();
+
+        // System.out.println(min);
+
     }
 }
