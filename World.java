@@ -25,10 +25,10 @@ public class World {
      * The first digit in the value is wether the colonist is present in that tile,
      * 0 for false, 1 for true
      */
-    static HashMap<Integer, Integer> worldMap = new HashMap<Integer, Integer>();
+    final static HashMap<Integer, Integer> worldMap = new HashMap<Integer, Integer>();
     static ArrayList<Integer> possibleDirections = new ArrayList<Integer>(); // North, East, South, West
     static int colonistLocation = 50;
-    static Boolean worldSetup; // is needed?
+    static boolean worldSetup; // is needed?
 
     // runs once at the beginning of the game
     public static void generateStartingWorldMap() {
@@ -83,6 +83,7 @@ public class World {
         } else {
             possibleDirections.set(3, (colonistLocation - 1)); // New West tile
         }
+
         return possibleDirections;
     }
 
@@ -94,6 +95,9 @@ public class World {
      */
     public static ArrayList<Integer> updateColonistLocation(int destination) {
         colonistLocation = destination; // New colonistLocation is destination (has now moved)
+
+        // need I/O to tell the user which direction they have gone
+
         return updatePossibleDirections(); // Update possible destinations given colonist is on new tile
     }
 

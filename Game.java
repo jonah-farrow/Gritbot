@@ -19,16 +19,17 @@ public class Game {
         World.updatePossibleDirections();
 
         while (!gameOver) { // Begin game
+            // take sensor input
+            System.out.println("Light level: \n" + "Temperature: \n" + "Humidity: \n");
 
+            // output possible colonist directions
             System.out.println("Possible directions: " + World.getPossibleDirections());
-
-            // take gInput (god input)
-
-            // colonist moves (in a direction)
-            // me.moveTile(0);
 
             // world event trigger (temporary or permanent event in current tile)
             System.out.println("Current Event: " + Event.getEvent());
+
+            // colonist moves (in a direction)
+            System.out.println("New Directions: " + me.moveTile());
 
             // memorise event
             // carrys out task (success or fail in that tile)

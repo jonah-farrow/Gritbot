@@ -73,18 +73,16 @@ void setup() {
 
 void loop() {
     float lux = lightMeter.readLightLevel();
-    Serial.println("");
-    Serial.print("Light: ");
-    Serial.println(lux);
+    float temp = bme.readTemperature();
+    float humidity = bme.readHumidity();
+   
+    Serial.print("@");
+    Serial.print(lux);
+    Serial.print("  ");
+    Serial.print(temp);
+    Serial.print("  ");
+    Serial.print(humidity);
+    Serial.println("#");
 
-    Serial.print("Temperature = ");
-    Serial.print(bme.readTemperature());
-    Serial.println(" °C");
-
-    Serial.print("Humidity = ");
-    Serial.print(bme.readHumidity());
-    Serial.println(" %");
-  
-    Serial.println();
     delay(1000);
 }
