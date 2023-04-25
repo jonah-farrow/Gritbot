@@ -41,11 +41,6 @@ public class Event {
         }
     }
 
-    public void addCustomEvent(String eventName, boolean isBuff, String toTrait) {
-        events.put(4, eventName);
-
-    }
-
     // high temperature and humidity, low light
     public static void eventTropicalStorm() {
         Environment.setEventEnvironmentLevels(-500, 500, 500);
@@ -62,17 +57,12 @@ public class Event {
     public static void eventExtremeCold() {
         Environment.setEventEnvironmentLevels(-500, -500, -500);
         currentEvent = "Extreme Cold";
-
     }
 
     // high temperature and light, low humidity
     public static void eventMeteorShower() {
         Environment.setEventEnvironmentLevels(500, 500, -500);
         currentEvent = "Meteor Shower";
-    }
-
-    public void eventCustom() {
-
     }
 
     /**

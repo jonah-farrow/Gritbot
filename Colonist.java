@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.math.*;
 
 public class Colonist {
     // When the game starts the three Colinist traits are set to 70%
@@ -73,20 +74,19 @@ public class Colonist {
     }
 
     /**
-     * Method to take index over possibleDirections, update currentPosition, then
-     * update possibleDirections
+     * Method to move the colonist to a random, valid, destinition from the set of
+     * directions
      * 
-     * @param direction can be the value 1,2,3, and 4 representing in order: North,
-     *                  East,
-     *                  South, and West
+     * @return
      * 
      * @return current map-view of where colonist is now
      */
-    public String moveTile(int direction) {
-        int destination = World.possibleDirections.get(direction); // If direction is not in the set of
-                                                                   // possibleDirections then the destination is invalid
+    public ArrayList<Integer> moveTile() {
+        double random = Math.random() * 4;
+        int destination = World.possibleDirections.get((int) random); // change this to use the getPossibleDirections
+                                                                      // method
         World.updateColonistLocation(destination);
-        return "";
+        return World.getPossibleDirections();
     }
 
     /**
