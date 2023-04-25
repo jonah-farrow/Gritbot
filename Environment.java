@@ -42,7 +42,11 @@ public class Environment {
         temp = tempLevel + tempModifier;
         humidity = humidityLevel + humidityModifier;
 
-        System.out.println(light + " " + temp + " " + humidity);
+        System.out.println();
+        System.out.println("Light = " + light + " with life mod: " + lightModifier);
+        System.out.println("Temperature = " + temp + " with temp mod: " + tempModifier);
+        System.out.println("Humidity = " + humidity + " with life mod: " + humidityModifier);
+        // System.out.println(light + " " + temp + " " + humidity);
 
     }
 

@@ -4,7 +4,7 @@ import java.math.*;
 
 public class Colonist {
     // When the game starts the three Colinist traits are set to 70%
-    public int howHungry, howTired, howHappy = 70;
+    public static int howHungry, howTired, howHappy = 70;
     // Set by the player at the start of the game
     public String colonistName;
 
@@ -16,7 +16,7 @@ public class Colonist {
      *         possible directions[4][5][6][7]
      *         (north, east, south west)
      */
-    public HashMap<String, Integer> getColonistStats() {
+    public static HashMap<String, Integer> getColonistStats() {
         HashMap<String, Integer> colonist = new HashMap<String, Integer>();
 
         colonist.put("Colonist Location:", getTile());
@@ -33,12 +33,54 @@ public class Colonist {
     }
 
     /**
+     * 1 less hungry, 2, less tired, 3, happier
+     * 
+     * @param whatDone
+     */
+    public static void traitIncrease(int whatDone) {
+        switch (whatDone) {
+            case 1:
+                modifyHowHungry(true);
+                break;
+            case 2:
+                modifyHowTired(true);
+                break;
+            case 3:
+                modifyHowHappy(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 1, more hungry, 2, more tired, 3, sadder
+     * 
+     * @param whatDone
+     */
+    public static void traitDecrease(int whatDone) {
+        switch (whatDone) {
+            case 1:
+                modifyHowHungry(false);
+                break;
+            case 2:
+                modifyHowTired(false);
+                break;
+            case 3:
+                modifyHowHappy(false);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
      * Over time these traits naturally decrease,
      * Or as the Colonist completes tasks successfuly such as eating; sleeping,
      * playing a game, their stats are replenished
      */
 
-    public void modifyHowHungry(Boolean flag) {
+    public static void modifyHowHungry(Boolean flag) {
         if (flag)
             howHungry++;
         else
@@ -50,7 +92,7 @@ public class Colonist {
     }
 
     // To-do, if howHappy >= 100% have special benefit occur to AI
-    public void modifyHowHappy(Boolean flag) {
+    public static void modifyHowHappy(Boolean flag) {
         if (flag)
             howHappy++;
         else
@@ -61,7 +103,7 @@ public class Colonist {
         howHappy = set;
     }
 
-    public void modifyHowTired(Boolean flag) {
+    public static void modifyHowTired(Boolean flag) {
         if (flag)
             howTired++;
         else
@@ -97,20 +139,25 @@ public class Colonist {
         return colonistName;
     }
 
-    public int getHowHungry() {
+    public static int getHowHungry() {
         return howHungry;
     }
 
-    public int getHowTired() {
+    public static int getHowTired() {
         return howTired;
     }
 
-    public int getHowHappy() {
+    public static int getHowHappy() {
         return howHappy;
     }
 
     public Boolean isExhauted() {
         return true;
+    }
+
+    public static int[] getColonistTraits() {
+        int[] arr = { getHowHungry(), getHowTired(), getHowHappy() };
+        return arr;
     }
 
     public Boolean isStarving() {
@@ -121,7 +168,7 @@ public class Colonist {
         return true;
     }
 
-    public int getTile() { // is bad practice?
+    public static int getTile() { // is bad practice?
         return World.getColonistLocation();
     }
 
