@@ -10,18 +10,6 @@ public class SensorInterface {
     static float temp;
     static float humidity;
 
-    public static float getLux() {
-        return lux;
-    }
-
-    public static float getTemp() {
-        return temp;
-    }
-
-    public static float getHumidity() {
-        return humidity;
-    }
-
     public static void test() throws IOException {
         System.out.println(Arrays.toString(SerialPort.getCommPorts()));
         SerialPort port = SerialPort.getCommPort("COM8");
@@ -56,8 +44,20 @@ public class SensorInterface {
         // TODO: only one reading is required, so add functionality that only reads when
         // asked to
 
-        port.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 1, 1);
+        // port.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 1, 1);
         port.setBaudRate(9600);
         System.out.println("Port open?: " + port.openPort());
+    }
+
+    public static float getLux() {
+        return lux;
+    }
+
+    public static float getTemp() {
+        return temp;
+    }
+
+    public static float getHumidity() {
+        return humidity;
     }
 }
