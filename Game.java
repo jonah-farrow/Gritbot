@@ -3,7 +3,7 @@ import java.time.*;
 
 public class Game {
 
-    public static void runGame() {
+    public static void runGame() throws InterruptedException {
         boolean gameOver = false;
         long start = System.currentTimeMillis();
         String[] arr = { "North", "East", "South", "West" };
@@ -11,11 +11,13 @@ public class Game {
         // Start reading
         try {
             SensorInterface.test();
+
             System.out.println("Sensors Activated: True");
         } catch (IOException e) {
             System.out.println("Sensors Activated: False");
             e.printStackTrace();
         }
+        Thread.sleep(1000); // helps the sensor code to get a first reading
 
         System.out.println("Creating World Map...\n");
         World.generateStartingWorldMap();
@@ -31,6 +33,7 @@ public class Game {
 
         while (!gameOver) { // Begin game
             // take sensor input
+
             Environment.setEnvironmentLevels(SensorInterface.getLux(), SensorInterface.getTemp(),
                     SensorInterface.getHumidity());
 
@@ -45,10 +48,10 @@ public class Game {
 
             // memorise event
             // carrys out task (success or fail in that tile)
+            System.out.println(Task.decideWhatTaskToComplete());
+            // adjust colonist traits depending on outcome
 
             // process (delay for game output)
-
-            // adjust colonist traits depending on outcome
 
             // output colonist stats
             System.out.println(me.getColonistStats());

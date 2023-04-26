@@ -4,17 +4,17 @@ public class Environment {
     static float humidityModifier;
     static float light, temp, humidity;
 
-    public Environment() {
-        if (Event.getEvent() == "") {
-            lightModifier = 0;
-            tempModifier = 0;
-            humidityModifier = 0;
-        }
-        light = 0;
-        temp = 0;
-        humidity = 0;
+    // public Environment() {
+    // if (Event.getEvent() == "") {
+    // lightModifier = 0;
+    // tempModifier = 0;
+    // humidityModifier = 0;
+    // }
+    // light = 0;
+    // temp = 0;
+    // humidity = 0;
 
-    }
+    // }
 
     /**
      * Method to adjust environment based on current event modifiers
@@ -58,15 +58,5 @@ public class Environment {
     public static float[] getEnvironmentLevels() {
         float[] environmentProperties = { light, temp, humidity };
         return environmentProperties;
-    }
-
-    /**
-     * Method to return current events environmental properties
-     * 
-     * @return eventEnvironmentalProperties
-     */
-    public static float[] getEventEnvironmentLevels() {
-        float[] eventEnvironmentProperties = { light, temp, humidity };
-        return eventEnvironmentProperties;
     }
 }
