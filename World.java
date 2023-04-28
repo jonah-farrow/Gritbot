@@ -34,8 +34,8 @@ public class World {
     public static void generateStartingWorldMap() {
         for (int f = 0; f < 100; f++) {
             worldMap.put(f, 0);
-
-            System.out.print(f + " "); // DEBUG: is iterating 100 times
+            Tile.generateTile();
+            // System.out.print(f + " "); // DEBUG: is iterating 100 times
         }
         worldMap.put(colonistLocation, 1); // value = 1, represent colonist starting space
 
@@ -64,22 +64,22 @@ public class World {
                                                                   // boundry numbers, should they be just if >= 100?
 
         if (colonistLocation - 10 < 0) {
-            possibleDirections.set(0, 100); // 100 = Reached most northern tiles of world
+            possibleDirections.set(0, 0); // 0 = Reached most northern tiles of world
         } else {
             possibleDirections.set(0, (colonistLocation - 10)); // New North tile
         }
         if (colonistLocation + 1 > 99) {
-            possibleDirections.set(1, 101); // 101 = Reached most eastern tiles of world
+            possibleDirections.set(1, 99); // 99 = Reached most eastern tiles of world
         } else {
             possibleDirections.set(1, (colonistLocation + 1)); // New East tile
         }
         if (colonistLocation + 10 > 99) {
-            possibleDirections.set(2, 102); // 102 = Reached most southern tiles of world
+            possibleDirections.set(2, 99); // 99 = Reached most southern tiles of world
         } else {
             possibleDirections.set(2, (colonistLocation + 10)); // New South tile
         }
         if (colonistLocation - 1 < 0) {
-            possibleDirections.set(3, 103); // 103 = Reached most western tiles fo the world
+            possibleDirections.set(3, 0); // 0 = Reached most western tiles fo the world
         } else {
             possibleDirections.set(3, (colonistLocation - 1)); // New West tile
         }
