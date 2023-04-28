@@ -11,7 +11,6 @@ public class Game {
         // Start reading
         try {
             SensorInterface.test();
-
             System.out.println("Sensors Activated: True");
         } catch (IOException e) {
             System.out.println("Sensors Activated: False");
@@ -19,46 +18,68 @@ public class Game {
         }
         Thread.sleep(1000); // helps the sensor code to get a first reading
 
+        System.out.println("Giving Colonist Work to Complete...\n");
+        Task.generateTaskList();
+
         System.out.println("Creating World Map...\n");
         World.generateStartingWorldMap();
 
         System.out.println("Creating Colonist...\n");
         Colonist me = new Colonist();
 
-        System.out.println("Giving Colonist Work to Complete...\n");
-        Task.generateTaskList();
-
         System.out.println("Creating possible directions...\n");
         World.updatePossibleDirections();
 
         while (!gameOver) { // Begin game
-            // take sensor input
+            // Tile.printTrace();
 
+            // take sensor input
             Environment.setEnvironmentLevels(SensorInterface.getLux(), SensorInterface.getTemp(),
                     SensorInterface.getHumidity());
 
-            // output possible colonist directions
-            System.out.println("Possible directions: " + World.getPossibleDirections());
+            // output tile information
+            System.out.println(Tile.getTileInformation());
+
+            // output colonist stats
+            System.out.println(Colonist.getTraitStatus());
 
             // world event trigger (temporary or permanent event in current tile)
             System.out.println("Current Event: " + Event.getEvent());
 
-            // colonist moves (in a direction)
-            System.out.println("New Directions: " + me.moveTile());
+            // what task to complete
+            System.out.println("\nTask to complete: " + Task.decideWhatTaskToComplete());
 
-            // memorise event
             // carrys out task (success or fail in that tile)
-            System.out.println(Task.decideWhatTaskToComplete());
+            if (Tile.doesTileContainCurrentTask() && Task.currentTask != "No Task") { // change to getcurrenttask()
+                System.out.println("Can complete task here: " + Task.getCurrentTask());
+                System.out.println("Attempting to " + Task.getCurrentTask());
+                System.out.println("..");
+                Thread.sleep(5000, 0);
+                System.out.println("...");
+                Thread.sleep(3000, 0);
+                System.out.println("....");
+                Thread.sleep(1000, 0);
+                if (Tile.carryOutTask()) {
+                    System.out.println("Success!");
+                    me.moveTile();
+                } else {
+                    System.out.println("Failure... trying again");
+                }
+                System.out.println();
+            } else {
+                // colonist moves (in a direction)
+                System.out.println("\nNew Directions: " + me.moveTile() + "\n");
+            }
+
+            Thread.sleep(2000);
             // adjust colonist traits depending on outcome
 
             // process (delay for game output)
 
-            // output colonist stats
-            System.out.println(me.getColonistStats());
-
             // colonist died/unexpected end to game
-            gameOver = true; // Game over, stop game.
+            // gameOver = true; // Game over, stop game.
 
+            System.out.println("\n----------------------------------\n");
         }
         long end = System.currentTimeMillis();
     }

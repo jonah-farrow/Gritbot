@@ -4,18 +4,6 @@ public class Environment {
     static float humidityModifier;
     static float light, temp, humidity;
 
-    // public Environment() {
-    // if (Event.getEvent() == "") {
-    // lightModifier = 0;
-    // tempModifier = 0;
-    // humidityModifier = 0;
-    // }
-    // light = 0;
-    // temp = 0;
-    // humidity = 0;
-
-    // }
-
     /**
      * Method to adjust environment based on current event modifiers
      * 

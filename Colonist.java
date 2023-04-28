@@ -4,7 +4,9 @@ import java.math.*;
 
 public class Colonist {
     // When the game starts the three Colinist traits are set to 70%
-    public static int howHungry, howTired, howHappy = 70;
+    public static int howHungry = 70;
+    public static int howTired = 70;
+    public static int howHappy = 70;
     // Set by the player at the start of the game
     public String colonistName;
 
@@ -153,6 +155,13 @@ public class Colonist {
 
     public Boolean isExhauted() {
         return true;
+    }
+
+    public static String getTraitStatus() {
+        String stats = ("\nHunger: " + Integer.toString(+getHowHungry()) + "\nTiredness: " + getHowTired()
+                + "\nHappiness: "
+                + getHowHappy());
+        return stats;
     }
 
     public static int[] getColonistTraits() {
